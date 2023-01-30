@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>JavaCodeGeeks</title>
+	<h:outputStylesheet library="resoruces" name="css/styles.css" />
+	<style type="text/css">
+html {
+	font-family: Roboto, sans-serif;
+}
+
+.bodyWrap {
+	width: 500px;
+}
+
+h2 {
+	color: red
+}
+
+.titleWrap {
+	background: #ACD4E7;
+	padding: 0 5px;
+}
+
+sup {
+	color: #FF0004;
+}
+</style>
+</h:head>
+
+
+
+
+<h:body>
+	<div class="bodyWrap">
+		<h:graphicImage library="img" name="pic/stuffbay.png" />
+		<hr />
+		<h:outputText value="Welcome to StuffBay! Auction For Free!!"
+			style="color: magenta; font-weight:Bold" />
+		<div style="text-align: right">
+			<h:form>
+				<h:commandButton action="frontpage.xhtml" value="Go Back"></h:commandButton>
+			</h:form>
+		</div>
+		<hr />>
+		<h:form>
+			<div class="titleWrap">
+				<h2>Submit an Item!</h2>
+			</div>
+		</h:form>
+		<h:form>
+			<table>
+				<tr>
+					<td align="right">Posting Title<sup>*</sup></td>
+					<td><h:inputTextarea row="50" col="50" id="name"
+							value="#{itemData.name}" required="true" >
+
+						</h:inputTextarea>	<h:message for="name" style="color:red" />
+					</td>
+
+				</tr>
+
+				<tr>
+					<td align="right">ID</td>
+					<td><h:inputTextarea row="50" col="50" value="#{itemData.id}" /></td>
+				</tr>
+
+				<tr>
+					<td align="right">Enter Picture of Item<sup>*</sup></td>
+					<td><h:inputTextarea row="50" col="50" id="pic" value="#{itemData.url}" required="true" >
+
+						</h:inputTextarea>	<h:message for="pic" style="color:red" />
+					</td>
+				</tr>
+
+				<tr>
+					<td align="right">Description of Item</td>
+					<td><h:inputTextarea row="50" col="50"
+							value="#{itemData.description}" /></td>
+
+				</tr>
+				<tr>
+					<td align="right">Price<sup>*</sup></td>
+					<td><h:inputTextarea row="50" col="50" id="price"
+							value="#{itemData.price}" required="true" >
+							<f:validateRegex pattern="^\d{1,}\.{1}\d{2}$" />
+
+						</h:inputTextarea> <h:message for="price" style="color:red" /></td>
+				</tr>
+
+				<tr>
+					<td align="right">Category<sup>*</sup></td>
+					<td><h:selectOneMenu value="#{itemData.category}">
+							<f:selectItems value="#{itemData.get_category_name ()}"></f:selectItems>
+						</h:selectOneMenu></td>
+				</tr>
+
+				<tr>
+					<td align="right"></td>
+					<td><h:commandButton value="Add Item"
+							action="#{itemData.addItem}" /></td>
+				</tr>
+			</table>
+		</h:form>
+	</div>
+</h:body>
+</html>

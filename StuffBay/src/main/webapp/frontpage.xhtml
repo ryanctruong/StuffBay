@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>JavaCodeGeeks</title>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<style type="text/css">
+html {
+	font-family: Roboto, sans-serif;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+th, td {
+	padding: 10px 15px;
+}
+
+thead {
+	background: #395870;
+	color: #fff;
+}
+
+th {
+	font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+	background: #f0f0f2;
+}
+
+td {
+	border-bottom: 1px solid #cecfd5;
+	border-right: 1px solid #cecfd5;
+}
+
+td:first-child {
+	border-left: 1px solid #cecfd5;
+}
+</style>
+</h:head>
+
+
+
+
+<h:body style="width:1200px; padding:20px;">
+
+
+	<h:graphicImage library="img" name="pic/stuffbay.png" />
+	<hr />
+
+	<td><h:outputText value="Welcome to StuffBay! Auction For Free!!"
+			style="color: magenta; font-weight:Bold" /></td>
+	<div style = "text-align:right	">
+	<h:form>
+		<h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+	</h:form>
+	</div>
+	<hr />
+
+	<table border="" style="padding-top: 20px; padding-bottom: 20px;">
+		<tbody>
+			<tr>
+				<h:form>
+					<td><b>Category :</b></td>
+					<td><h:selectOneMenu value="#{itemData.categorySearchItem}">
+							<f:selectItems value="#{itemData.get_category_name()}"></f:selectItems>
+						</h:selectOneMenu></td>
+					<td><h:commandButton value="Filter"
+							action="#{itemData.searchCategory}" update="listofItems" /></td>
+					<td></td>
+					<td>(OR)</td>
+					<td></td>
+					<td><h:commandButton value="Submit an Item"
+							action="index.xhtml" /></td>
+				</h:form>
+			</tr>
+		</tbody>
+	</table>
+
+	<h:form>
+
+		<h:dataTable value="#{itemData.items}" var="item"
+			styleClass="itemTable" headerClass="itemTableHeader"
+			rowClasses="itemTableOddRow,itemTableEvenRow">
+
+			<h:column>
+				<f:facet name="header"> Name</f:facet>    				
+               #{item.name} 
+	            </h:column>
+
+			<h:column>
+				<f:facet name="header">ID</f:facet> 
+               #{item.id}
+            </h:column>
+
+			<h:column>
+				<f:facet name="header">Picutre</f:facet>
+				<h:graphicImage value="#{item.url}" width="150px" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header" style="width:150px; text-align:left">Description</f:facet>
+        			#{item.description}
+            </h:column>
+
+			<h:column>
+				<f:facet name="header" style="width:150px; text-align:left">Price</f:facet>
+            	<h:outputText value="#{item.price}">
+					<f:convertNumber currencyCode="USD" type="currency" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Category</f:facet>
+            	#{item.category}
+            </h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
+

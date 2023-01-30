@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="ISO-8859-1" />
+<title>StuffBay</title>
+<style type="text/css">
+html {
+	font-family: Roboto, sans-serif;
+}
+
+.bodyWrap {
+	width: 500px
+}
+
+.titleWrap {
+	background: #ACD4E7;
+	padding: 0 5px;
+}
+
+.center {
+	width: 150px;
+	text-align: center;
+}
+
+sup {
+	color: #FF0004;
+}
+
+h2 {
+	color: red
+}
+
+commandButton:hover {
+	opacity: 0.4;
+}
+</style>
+</head>
+<body>
+	<h:body style="width:1500px; padding:20px;">
+		<div class="bodyWrap">
+			<h:graphicImage library="img" name="pic/stuffbay.png" />
+			<hr />
+			<h:outputText value="Welcome to StuffBay! Auction For Free!!"
+				style="color: magenta; font-weight:Bold" />
+			<hr />
+			<h:form>
+				<div class="titleWrap">
+					<h2>Login!</h2>
+				</div>
+				<hr />
+
+				<h:outputText value="Username" style="font-weight:bold" />
+				<br></br>
+				<h:inputText id="username" value="#{login.user}"></h:inputText>
+				<h:message for="username"></h:message>
+				<br></br>
+				<br></br>
+
+				<h:outputText value="Password" style="font-weight:bold" />
+				<br></br>
+				<h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
+				<h:message for="password"></h:message>
+				<br></br>
+				<br></br>
+
+				<h:commandButton action="#{login.validateUsernamePassword}"
+					value="Login"></h:commandButton>
+			</h:form>
+		</div>
+	</h:body>
+</body>
+</html>
